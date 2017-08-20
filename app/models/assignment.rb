@@ -1,6 +1,9 @@
 class Assignment < ApplicationRecord
   # Direct associations
 
+  belongs_to :chores,
+             :class_name => "Chore"
+
   belongs_to :parents,
              :class_name => "Parent"
 
