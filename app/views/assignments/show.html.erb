@@ -6,13 +6,31 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Chores</dt>
-      <dd><%= @assignment.chores_id %></dd>
+      <dd>
+        <% if @assignment.chores.present? %>
+          <a href="/chores/<%= @assignment.chores_id %>">
+            <%= @assignment.chores.chore_name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Parents</dt>
-      <dd><%= @assignment.parents_id %></dd>
+      <dd>
+        <% if @assignment.parents.present? %>
+          <a href="/parents/<%= @assignment.parents_id %>">
+            <%= @assignment.parents.parent_name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Kids</dt>
-      <dd><%= @assignment.kids_id %></dd>
+      <dd>
+        <% if @assignment.kids.present? %>
+          <a href="/kids/<%= @assignment.kids_id %>">
+            <%= @assignment.kids.kid_name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Due date</dt>
       <dd><%= @assignment.due_date %></dd>

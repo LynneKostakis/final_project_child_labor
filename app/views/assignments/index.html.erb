@@ -19,9 +19,27 @@
 
       <% @assignments.each do |assignment| %>
       <tr>
-        <td><%= assignment.chores.chore_name %></td>
-        <td><%= assignment.parents.parent_name %></td>
-        <td><%= assignment.kids.kid_name %></td>
+        <td>
+          <% if assignment.chores.present? %>
+            <a href="/chores/<%= assignment.chores.id %>">
+              <%= assignment.chores.chore_name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if assignment.parents.present? %>
+            <a href="/parents/<%= assignment.parents.id %>">
+              <%= assignment.parents.parent_name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if assignment.kids.present? %>
+            <a href="/kids/<%= assignment.kids.id %>">
+              <%= assignment.kids.kid_name %>
+            </a>
+          <% end %>
+        </td>
         <td><%= assignment.due_date %></td>
         <td><%= assignment.completed %></td>
         <td>

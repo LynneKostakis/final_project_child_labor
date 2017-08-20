@@ -9,7 +9,13 @@
       <dd><%= @chore.chore_name %></dd>
 
       <dt>Chore categories</dt>
-      <dd><%= @chore.chore_categories_id %></dd>
+      <dd>
+        <% if @chore.chore_categories.present? %>
+          <a href="/chore_categories/<%= @chore.chore_categories_id %>">
+            <%= @chore.chore_categories.chores_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Chore value</dt>
       <dd><%= @chore.chore_value %></dd>

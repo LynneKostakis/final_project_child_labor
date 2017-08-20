@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Kids</dt>
-      <dd><%= @family.kids_id %></dd>
+      <dd>
+        <% if @family.kids.present? %>
+          <a href="/kids/<%= @family.kids_id %>">
+            <%= @family.kids.kid_name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Parents</dt>
-      <dd><%= @family.parents_id %></dd>
+      <dd>
+        <% if @family.parents.present? %>
+          <a href="/parents/<%= @family.parents_id %>">
+            <%= @family.parents.parent_name %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

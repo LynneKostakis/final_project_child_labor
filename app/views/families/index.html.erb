@@ -16,8 +16,20 @@
 
       <% @families.each do |family| %>
       <tr>
-        <td><%= family.kids.kid_name %></td>
-        <td><%= family.parents.parent_name %></td>
+        <td>
+          <% if family.kids.present? %>
+            <a href="/kids/<%= family.kids.id %>">
+              <%= family.kids.kid_name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if family.parents.present? %>
+            <a href="/parents/<%= family.parents.id %>">
+              <%= family.parents.parent_name %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/families/<%= family.id %>" class="btn btn-primary">Show</a>
           <a href="/families/<%= family.id %>/edit" class="btn btn-warning">Edit</a>

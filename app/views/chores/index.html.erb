@@ -18,7 +18,13 @@
       <% @chores.each do |chore| %>
       <tr>
         <td><%= chore.chore_name %></td>
-        <td><%= chore.chore_categories.chores_id %></td>
+        <td>
+          <% if chore.chore_categories.present? %>
+            <a href="/chore_categories/<%= chore.chore_categories.id %>">
+              <%= chore.chore_categories.chores_id %>
+            </a>
+          <% end %>
+        </td>
         <td><%= chore.chore_value %></td>
         <td>
           <a href="/chores/<%= chore.id %>" class="btn btn-primary">Show</a>
