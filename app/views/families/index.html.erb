@@ -17,7 +17,7 @@
       <% @families.each do |family| %>
       <tr>
         <td><%= family.kids.kid_name %></td>
-        <td><%= family.parents_id %></td>
+        <td><%= family.parents.parent_name %></td>
         <td>
           <a href="/families/<%= family.id %>" class="btn btn-primary">Show</a>
           <a href="/families/<%= family.id %>/edit" class="btn btn-warning">Edit</a>
