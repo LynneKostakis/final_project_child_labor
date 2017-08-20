@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "kids#index"
   # Routes for the Assignment resource:
   # CREATE
   get "/assignments/new", :controller => "assignments", :action => "new"
