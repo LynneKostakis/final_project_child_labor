@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root :to => "kids#index"
   # Routes for the Assignment resource:
   # CREATE
