@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Chore resource:
+  # CREATE
+  get "/chores/new", :controller => "chores", :action => "new"
+  post "/create_chore", :controller => "chores", :action => "create"
+
+  # READ
+  get "/chores", :controller => "chores", :action => "index"
+  get "/chores/:id", :controller => "chores", :action => "show"
+
+  # UPDATE
+  get "/chores/:id/edit", :controller => "chores", :action => "edit"
+  post "/update_chore/:id", :controller => "chores", :action => "update"
+
+  # DELETE
+  get "/delete_chore/:id", :controller => "chores", :action => "destroy"
+  #------------------------------
+
   # Routes for the Family resource:
   # CREATE
   get "/families/new", :controller => "families", :action => "new"

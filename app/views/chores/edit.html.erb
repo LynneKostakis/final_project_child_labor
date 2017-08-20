@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @chore.errors.any? %>
+  <% @chore.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Chore #<%= @chore.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_chore/<%= @chore.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for chore_name -->
+      <div class="form-group">
+        <label for="chore_name" class="control-label">
+          Chore name
+        </label>
+
+        <input type="text" id="chore_name" name="chore_name" placeholder="Chore name" class="form-control" value="<%= @chore.chore_name %>">
+      </div>
+
+      <!-- Label and input for chore_categories_id -->
+      <div class="form-group">
+        <label for="chore_categories_id" class="control-label">
+          Chore categories
+        </label>
+
+        <input type="text" id="chore_categories_id" name="chore_categories_id" placeholder="Chore categories" class="form-control" value="<%= @chore.chore_categories_id %>">
+      </div>
+
+      <!-- Label and input for chore_value -->
+      <div class="form-group">
+        <label for="chore_value" class="control-label">
+          Chore value
+        </label>
+
+        <input type="text" id="chore_value" name="chore_value" placeholder="Chore value" class="form-control" value="<%= @chore.chore_value %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Chore
+      </button>
+      or
+      <a href="/chores/<%= @chore.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
