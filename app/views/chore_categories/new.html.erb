@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @chore_category.errors.any? %>
+  <% @chore_category.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Chore Category</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_chore_category" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for chores_id -->
+      <div class="form-group">
+        <label for="chores_id" class="control-label">
+          Chores
+        </label>
+
+        <input type="text" id="chores_id" name="chores_id" placeholder="Chores" class="form-control" value="<%= @chore_category.chores_id %>">
+      </div>
+
+      <!-- Label and input for category_name -->
+      <div class="form-group">
+        <label for="category_name" class="control-label">
+          Category name
+        </label>
+
+        <input type="text" id="category_name" name="category_name" placeholder="Category name" class="form-control" value="<%= @chore_category.category_name %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Chore Category
+      </button>
+      or
+      <a href="/chore_categories">Cancel</a>
+    </form>
+  </div>
+</div>

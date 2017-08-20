@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Chore_category resource:
+  # CREATE
+  get "/chore_categories/new", :controller => "chore_categories", :action => "new"
+  post "/create_chore_category", :controller => "chore_categories", :action => "create"
+
+  # READ
+  get "/chore_categories", :controller => "chore_categories", :action => "index"
+  get "/chore_categories/:id", :controller => "chore_categories", :action => "show"
+
+  # UPDATE
+  get "/chore_categories/:id/edit", :controller => "chore_categories", :action => "edit"
+  post "/update_chore_category/:id", :controller => "chore_categories", :action => "update"
+
+  # DELETE
+  get "/delete_chore_category/:id", :controller => "chore_categories", :action => "destroy"
+  #------------------------------
+
   # Routes for the Chore resource:
   # CREATE
   get "/chores/new", :controller => "chores", :action => "new"
