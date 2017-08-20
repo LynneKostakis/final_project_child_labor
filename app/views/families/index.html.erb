@@ -9,6 +9,11 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :family_name_cont, "Family name contains" %>
+    <%= f.text_field :family_name_cont, :class => "form-control", :placeholder => "Family name contains" %>
+  </div>
+
+<div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -74,6 +79,7 @@
       <tr>
         <th>Kids</th>
         <th>Parents</th>
+        <th>Family name</th>
         <th>Actions</th>
       </tr>
 
@@ -93,6 +99,7 @@
             </a>
           <% end %>
         </td>
+        <td><%= family.family_name %></td>
         <td>
           <a href="/families/<%= family.id %>" class="btn btn-primary">Show</a>
           <a href="/families/<%= family.id %>/edit" class="btn btn-warning">Edit</a>
