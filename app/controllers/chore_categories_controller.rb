@@ -6,6 +6,7 @@ class ChoreCategoriesController < ApplicationController
   end
 
   def show
+    @chore = Chore.new
     @chore_category = ChoreCategory.find(params[:id])
 
     render("chore_categories/show.html.erb")

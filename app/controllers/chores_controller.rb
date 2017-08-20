@@ -6,6 +6,7 @@ class ChoresController < ApplicationController
   end
 
   def show
+    @assignment = Assignment.new
     @chore = Chore.find(params[:id])
 
     render("chores/show.html.erb")

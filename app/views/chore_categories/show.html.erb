@@ -54,6 +54,44 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_chore" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for chore_name -->
+      <div class="form-group">
+        <label for="chore_name" class="control-label">
+          Chore name
+        </label>
+
+        <input type="text" id="chore_name" name="chore_name" placeholder="Chore name" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for chore_categories_id -->
+      <div class="form-group">
+        <label for="chore_categories_id" class="control-label">
+          Chore categories
+        </label>
+
+        <%= select_tag(:chore_categories_id, options_from_collection_for_select(ChoreCategory.all, :id, :chores_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for chore_value -->
+      <div class="form-group">
+        <label for="chore_value" class="control-label">
+          Chore value
+        </label>
+
+        <input type="text" id="chore_value" name="chore_value" placeholder="Chore value" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Chore
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

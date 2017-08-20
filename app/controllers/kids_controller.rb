@@ -6,6 +6,8 @@ class KidsController < ApplicationController
   end
 
   def show
+    @assignment = Assignment.new
+    @family = Family.new
     @kid = Kid.find(params[:id])
 
     render("kids/show.html.erb")
