@@ -1,0 +1,1 @@
+{"name":"Final Project - Child Labor","repository":"https://github.com/LynneKostakis/final_project_child_labor","env":{"CLOUDINARY_CLOUD_NAME":{"required":true},"CLOUDINARY_API_KEY":{"required":true},"CLOUDINARY_API_SECRET":{"required":true},"ROLLBAR_ACCESS_TOKEN":{"required":true}}}
