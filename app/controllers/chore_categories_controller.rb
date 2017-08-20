@@ -1,6 +1,7 @@
 class ChoreCategoriesController < ApplicationController
   def index
-    @chore_categories = ChoreCategory.page(params[:page]).per(10)
+    @q = ChoreCategory.ransack(params[:q])
+    @chore_categories = @q.result(:distinct => true).includes(:chores).page(params[:page]).per(10)
 
     render("chore_categories/index.html.erb")
   end

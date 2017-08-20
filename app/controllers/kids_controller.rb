@@ -1,6 +1,7 @@
 class KidsController < ApplicationController
   def index
-    @kids = Kid.page(params[:page]).per(10)
+    @q = Kid.ransack(params[:q])
+    @kids = @q.result(:distinct => true).includes(:families, :assignments).page(params[:page]).per(10)
 
     render("kids/index.html.erb")
   end

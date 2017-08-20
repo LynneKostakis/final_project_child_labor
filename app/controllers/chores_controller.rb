@@ -1,6 +1,7 @@
 class ChoresController < ApplicationController
   def index
-    @chores = Chore.page(params[:page]).per(10)
+    @q = Chore.ransack(params[:q])
+    @chores = @q.result(:distinct => true).includes(:assignments, :chore_categories).page(params[:page]).per(10)
 
     render("chores/index.html.erb")
   end
