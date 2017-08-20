@@ -36,6 +36,15 @@
         <%= select_tag(:parents_id, options_from_collection_for_select(Parent.all, :id, :parent_name, @family.parents_id), :class => "form-control") %>
       </div>
 
+      <!-- Label and input for family_name -->
+      <div class="form-group">
+        <label for="family_name" class="control-label">
+          Family name
+        </label>
+
+        <input type="text" id="family_name" name="family_name" placeholder="Family name" class="form-control" value="<%= @family.family_name %>">
+      </div>
+
       <button class="btn btn-success">
         Create Family
       </button>

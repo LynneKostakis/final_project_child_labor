@@ -23,6 +23,7 @@ class FamiliesController < ApplicationController
 
     @family.kids_id = params[:kids_id]
     @family.parents_id = params[:parents_id]
+    @family.family_name = params[:family_name]
 
     save_status = @family.save
 
@@ -51,6 +52,7 @@ class FamiliesController < ApplicationController
 
     @family.kids_id = params[:kids_id]
     @family.parents_id = params[:parents_id]
+    @family.family_name = params[:family_name]
 
     save_status = @family.save
 
