@@ -1,5 +1,7 @@
 ActiveAdmin.register Chore do
 
+ permit_params :chore_name, :chore_categories_id, :chore_value
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
