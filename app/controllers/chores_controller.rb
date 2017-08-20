@@ -1,6 +1,6 @@
 class ChoresController < ApplicationController
   def index
-    @chores = Chore.all
+    @chores = Chore.page(params[:page]).per(10)
 
     render("chores/index.html.erb")
   end

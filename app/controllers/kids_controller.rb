@@ -1,6 +1,6 @@
 class KidsController < ApplicationController
   def index
-    @kids = Kid.all
+    @kids = Kid.page(params[:page]).per(10)
 
     render("kids/index.html.erb")
   end

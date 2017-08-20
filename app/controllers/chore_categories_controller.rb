@@ -1,6 +1,6 @@
 class ChoreCategoriesController < ApplicationController
   def index
-    @chore_categories = ChoreCategory.all
+    @chore_categories = ChoreCategory.page(params[:page]).per(10)
 
     render("chore_categories/index.html.erb")
   end
