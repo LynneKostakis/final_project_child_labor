@@ -19,7 +19,7 @@
 
       <% @assignments.each do |assignment| %>
       <tr>
-        <td><%= assignment.chores_id %></td>
+        <td><%= assignment.chores.chore_name %></td>
         <td><%= assignment.parents_id %></td>
         <td><%= assignment.kids_id %></td>
         <td><%= assignment.due_date %></td>
