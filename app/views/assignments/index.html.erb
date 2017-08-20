@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1>
+    Assignments
+    <a href="/assignments/new" class="btn btn-lg btn-success">New Assignment</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Chores</th>
+        <th>Parents</th>
+        <th>Kids</th>
+        <th>Due date</th>
+        <th>Completed</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @assignments.each do |assignment| %>
+      <tr>
+        <td><%= assignment.chores_id %></td>
+        <td><%= assignment.parents_id %></td>
+        <td><%= assignment.kids_id %></td>
+        <td><%= assignment.due_date %></td>
+        <td><%= assignment.completed %></td>
+        <td>
+          <a href="/assignments/<%= assignment.id %>" class="btn btn-primary">Show</a>
+          <a href="/assignments/<%= assignment.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_assignment/<%= assignment.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
