@@ -24,7 +24,7 @@
           Chores
         </label>
 
-        <input type="text" id="chores_id" name="chores_id" placeholder="Chores" class="form-control" value="<%= @assignment.chores_id %>">
+        <%= select_tag(:chores_id, options_from_collection_for_select(Chore.all, :id, :chore_name, @assignment.chores_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for parents_id -->
