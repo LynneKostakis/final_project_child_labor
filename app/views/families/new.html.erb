@@ -24,7 +24,7 @@
           Kids
         </label>
 
-        <input type="text" id="kids_id" name="kids_id" placeholder="Kids" class="form-control" value="<%= @family.kids_id %>">
+        <%= select_tag(:kids_id, options_from_collection_for_select(Kid.all, :id, :kid_name, @family.kids_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for parents_id -->
