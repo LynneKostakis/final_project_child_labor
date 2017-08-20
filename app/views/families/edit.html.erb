@@ -33,7 +33,7 @@
           Parents
         </label>
 
-        <input type="text" id="parents_id" name="parents_id" placeholder="Parents" class="form-control" value="<%= @family.parents_id %>">
+        <%= select_tag(:parents_id, options_from_collection_for_select(Parent.all, :id, :parent_name, @family.parents_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">
