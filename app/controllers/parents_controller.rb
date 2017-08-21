@@ -1,14 +1,13 @@
 class ParentsController < ApplicationController
   def index
     @q = Parent.ransack(params[:q])
-    @parents = @q.result(:distinct => true).includes(:families, :assignments).page(params[:page]).per(10)
+    @parents = @q.result(:distinct => true).includes(:assignments, :family).page(params[:page]).per(10)
 
     render("parents/index.html.erb")
   end
 
   def show
     @assignment = Assignment.new
-    @family = Family.new
     @parent = Parent.find(params[:id])
 
     render("parents/show.html.erb")
@@ -24,6 +23,7 @@ class ParentsController < ApplicationController
     @parent = Parent.new
 
     @parent.parent_name = params[:parent_name]
+    @parent.family_id = params[:family_id]
 
     save_status = @parent.save
 
@@ -51,6 +51,7 @@ class ParentsController < ApplicationController
     @parent = Parent.find(params[:id])
 
     @parent.parent_name = params[:parent_name]
+    @parent.family_id = params[:family_id]
 
     save_status = @parent.save
 
