@@ -1,11 +1,11 @@
 class Family < ApplicationRecord
   # Direct associations
 
-  belongs_to :parents,
-             :class_name => "Parent"
+  has_many   :kids,
+             :dependent => :destroy
 
-  belongs_to :kids,
-             :class_name => "Kid"
+  has_many   :parents,
+             :dependent => :nullify
 
   # Indirect associations
 

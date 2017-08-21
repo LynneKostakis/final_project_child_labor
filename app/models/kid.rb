@@ -1,11 +1,9 @@
 class Kid < ApplicationRecord
   # Direct associations
 
-  has_many   :assignments,
-             :foreign_key => "kids_id",
-             :dependent => :destroy
+  belongs_to :family
 
-  has_many   :families,
+  has_many   :assignments,
              :foreign_key => "kids_id",
              :dependent => :destroy
 

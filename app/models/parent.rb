@@ -1,11 +1,10 @@
 class Parent < ApplicationRecord
   # Direct associations
 
-  has_many   :assignments,
-             :foreign_key => "parents_id",
-             :dependent => :destroy
+  belongs_to :family,
+             :required => false
 
-  has_many   :families,
+  has_many   :assignments,
              :foreign_key => "parents_id",
              :dependent => :destroy
 

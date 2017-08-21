@@ -8,6 +8,15 @@
       <dt>Kid name</dt>
       <dd><%= @kid.kid_name %></dd>
 
+      <dt>Family</dt>
+      <dd>
+        <% if @kid.family.present? %>
+          <a href="/families/<%= @kid.family_id %>">
+            <%= @kid.family.created_at %>
+          </a>
+        <% end %>
+      </dd>
+
     </dl>
 
     <div class="btn-group btn-group-justified">
@@ -21,66 +30,6 @@
         Delete
       </a>
     </div>
-  </div>
-</div>
-
-<!-- A Kid has many families -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Families
-      </li>
-
-      <% @kid.families.each do |family| %>
-        <li class="list-group-item">
-          <a href="/families/<%= family.id %>">
-            <%= family.kids_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/families/<%= family.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/families/<%= family.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_family/<%= family.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_family" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for kids_id -->
-      <div class="form-group">
-        <label for="kids_id" class="control-label">
-          Kids
-        </label>
-
-        <%= select_tag(:kids_id, options_from_collection_for_select(Kid.all, :id, :kid_name), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for parents_id -->
-      <div class="form-group">
-        <label for="parents_id" class="control-label">
-          Parents
-        </label>
-
-        <%= select_tag(:parents_id, options_from_collection_for_select(Parent.all, :id, :parent_name), :class => "form-control") %>
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Family
-      </button>
-    </form>
-      </li>
-    </ul>
   </div>
 </div>
 

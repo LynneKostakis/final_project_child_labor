@@ -1,6 +1,6 @@
 ActiveAdmin.register Family do
 
- permit_params :kids_id, :parents_id
+ permit_params :family_name
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

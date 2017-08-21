@@ -5,23 +5,8 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Kids</dt>
-      <dd>
-        <% if @family.kids.present? %>
-          <a href="/kids/<%= @family.kids_id %>">
-            <%= @family.kids.kid_name %>
-          </a>
-        <% end %>
-      </dd>
-
-      <dt>Parents</dt>
-      <dd>
-        <% if @family.parents.present? %>
-          <a href="/parents/<%= @family.parents_id %>">
-            <%= @family.parents.parent_name %>
-          </a>
-        <% end %>
-      </dd>
+      <dt>Family name</dt>
+      <dd><%= @family.family_name %></dd>
 
     </dl>
 
@@ -36,5 +21,113 @@
         Delete
       </a>
     </div>
+  </div>
+</div>
+
+<!-- A Family has many parents -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Parents
+      </li>
+
+      <% @family.parents.each do |parent| %>
+        <li class="list-group-item">
+          <a href="/parents/<%= parent.id %>">
+            <%= parent.parent_name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/parents/<%= parent.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/parents/<%= parent.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_parent/<%= parent.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_parent" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for parent_name -->
+      <div class="form-group">
+        <label for="parent_name" class="control-label">
+          Parent name
+        </label>
+
+        <input type="text" id="parent_name" name="parent_name" placeholder="Parent name" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for family_id -->
+      <input type="hidden" name="family_id" value="<%= @family.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Parent
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Family has many kids -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Kids
+      </li>
+
+      <% @family.kids.each do |kid| %>
+        <li class="list-group-item">
+          <a href="/kids/<%= kid.id %>">
+            <%= kid.kid_name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/kids/<%= kid.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/kids/<%= kid.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_kid/<%= kid.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_kid" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for kid_name -->
+      <div class="form-group">
+        <label for="kid_name" class="control-label">
+          Kid name
+        </label>
+
+        <input type="text" id="kid_name" name="kid_name" placeholder="Kid name" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for family_id -->
+      <input type="hidden" name="family_id" value="<%= @family.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Kid
+      </button>
+    </form>
+      </li>
+    </ul>
   </div>
 </div>

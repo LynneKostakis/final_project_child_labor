@@ -1,12 +1,14 @@
 class FamiliesController < ApplicationController
   def index
     @q = Family.ransack(params[:q])
-    @families = @q.result(:distinct => true).includes(:kids, :parents).page(params[:page]).per(10)
+    @families = @q.result(:distinct => true).includes(:parents, :kids).page(params[:page]).per(10)
 
     render("families/index.html.erb")
   end
 
   def show
+    @kid = Kid.new
+    @parent = Parent.new
     @family = Family.find(params[:id])
 
     render("families/show.html.erb")
@@ -21,8 +23,7 @@ class FamiliesController < ApplicationController
   def create
     @family = Family.new
 
-    @family.kids_id = params[:kids_id]
-    @family.parents_id = params[:parents_id]
+    @family.family_name = params[:family_name]
 
     save_status = @family.save
 
@@ -49,8 +50,7 @@ class FamiliesController < ApplicationController
   def update
     @family = Family.find(params[:id])
 
-    @family.kids_id = params[:kids_id]
-    @family.parents_id = params[:parents_id]
+    @family.family_name = params[:family_name]
 
     save_status = @family.save
 

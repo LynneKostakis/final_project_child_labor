@@ -18,22 +18,13 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for kids_id -->
+      <!-- Label and input for family_name -->
       <div class="form-group">
-        <label for="kids_id" class="control-label">
-          Kids
+        <label for="family_name" class="control-label">
+          Family name
         </label>
 
-        <%= select_tag(:kids_id, options_from_collection_for_select(Kid.all, :id, :kid_name, @family.kids_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for parents_id -->
-      <div class="form-group">
-        <label for="parents_id" class="control-label">
-          Parents
-        </label>
-
-        <%= select_tag(:parents_id, options_from_collection_for_select(Parent.all, :id, :parent_name, @family.parents_id), :class => "form-control") %>
+        <input type="text" id="family_name" name="family_name" placeholder="Family name" class="form-control" value="<%= @family.family_name %>">
       </div>
 
       <button class="btn btn-success">
