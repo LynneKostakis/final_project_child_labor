@@ -1,18 +1,17 @@
 <div class="page-header">
-  <h3>Parent #<%= @parent.id %></h3>
+  <h3><%= @parent.parent_name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Parent name</dt>
-      <dd><%= @parent.parent_name %></dd>
+     
 
       <dt>Family</dt>
       <dd>
         <% if @parent.family.present? %>
           <a href="/families/<%= @parent.family_id %>">
-            <%= @parent.family.created_at %>
+            <%= @parent.family.family_name %>
           </a>
         <% end %>
       </dd>
@@ -23,98 +22,15 @@
       <a href="/parents" class="btn btn-primary">
         Back
       </a>
-      <a href="/parents/<%= @parent.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_parent/<%= @parent.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+        <td>
+          
+          <% if current_parent.id == @parent.id %>
+            <a href="/parents/edit" class="btn btn-warning">Edit</a>
+          <% end %> 
+        </td>
     </div>
   </div>
 </div>
 
-<!-- A Parent has many assignments -->
 
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Assignments
-      </li>
 
-      <% @parent.assignments.each do |assignment| %>
-        <li class="list-group-item">
-          <a href="/assignments/<%= assignment.id %>">
-            <%= assignment.chores_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/assignments/<%= assignment.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/assignments/<%= assignment.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_assignment/<%= assignment.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_assignment" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for chores_id -->
-      <div class="form-group">
-        <label for="chores_id" class="control-label">
-          Chores
-        </label>
-
-        <%= select_tag(:chores_id, options_from_collection_for_select(Chore.all, :id, :chore_name), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for parents_id -->
-      <div class="form-group">
-        <label for="parents_id" class="control-label">
-          Parents
-        </label>
-
-        <%= select_tag(:parents_id, options_from_collection_for_select(Parent.all, :id, :parent_name), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for kids_id -->
-      <div class="form-group">
-        <label for="kids_id" class="control-label">
-          Kids
-        </label>
-
-        <%= select_tag(:kids_id, options_from_collection_for_select(Kid.all, :id, :kid_name), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for due_date -->
-      <div class="form-group">
-        <label for="due_date" class="control-label">
-          Due date
-        </label>
-
-        <input type="text" id="due_date" name="due_date" placeholder="Due date" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for completed -->
-      <div class="checkbox">
-        <label for="completed">
-          <input type="checkbox" id="completed" name="completed" value="1" <%= "checked" if @assignment.completed %>>
-          Completed
-        </label>
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Assignment
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>

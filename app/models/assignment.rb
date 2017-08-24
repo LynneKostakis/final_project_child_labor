@@ -14,4 +14,5 @@ class Assignment < ApplicationRecord
 
   # Validations
 
+  validates_date :due_date, on_or_before: lambda { Date.current }
 end

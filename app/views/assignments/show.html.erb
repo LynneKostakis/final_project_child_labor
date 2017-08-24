@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h3>Assignment #<%= @assignment.id %></h3>
+  <h3>Assignment - <%= @assignment.chores.chore_name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Chores</dt>
+      <dt>Chore</dt>
       <dd>
         <% if @assignment.chores.present? %>
           <a href="/chores/<%= @assignment.chores_id %>">
@@ -14,7 +14,7 @@
         <% end %>
       </dd>
 
-      <dt>Parents</dt>
+      <dt>Assigned by</dt>
       <dd>
         <% if @assignment.parents.present? %>
           <a href="/parents/<%= @assignment.parents_id %>">
@@ -23,7 +23,7 @@
         <% end %>
       </dd>
 
-      <dt>Kids</dt>
+      <dt>Owned by</dt>
       <dd>
         <% if @assignment.kids.present? %>
           <a href="/kids/<%= @assignment.kids_id %>">
@@ -33,10 +33,15 @@
       </dd>
 
       <dt>Due date</dt>
-      <dd><%= @assignment.due_date %></dd>
+      <dd><%= @assignment.due_date.to_date %></dd>
 
-      <dt>Completed</dt>
-      <dd><%= @assignment.completed %></dd>
+      <dt>Status</dt>
+      <dd><% if @assignment.completed %>
+              Completed
+            <% else %>
+              Not Complete
+            <% end %>
+      </dd>
 
     </dl>
 

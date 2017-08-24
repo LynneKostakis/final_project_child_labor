@@ -10,6 +10,7 @@ class ChoresController < ApplicationController
     @assignment = Assignment.new
     @chore = Chore.find(params[:id])
 
+    
     render("chores/show.html.erb")
   end
 
@@ -53,7 +54,9 @@ class ChoresController < ApplicationController
 
     @chore.chore_name = params[:chore_name]
     @chore.chore_categories_id = params[:chore_categories_id]
+    
     @chore.chore_value = params[:chore_value]
+
 
     save_status = @chore.save
 

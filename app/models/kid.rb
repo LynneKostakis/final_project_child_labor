@@ -10,5 +10,6 @@ class Kid < ApplicationRecord
   # Indirect associations
 
   # Validations
+validates :kid_name, :presence => true, :uniqueness => true
 
 end

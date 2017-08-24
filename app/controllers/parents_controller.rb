@@ -1,14 +1,16 @@
 class ParentsController < ApplicationController
   def index
-    @q = Parent.ransack(params[:q])
-    @parents = @q.result(:distinct => true).includes(:assignments, :family).page(params[:page]).per(10)
-
+    
+    @current_family = current_parent.family
+    @parents = @current_family.parents
     render("parents/index.html.erb")
   end
 
   def show
     @assignment = Assignment.new
     @parent = Parent.find(params[:id])
+    @current_family = current_parent.family
+    @parents = @current_family.parents
 
     render("parents/show.html.erb")
   end
@@ -25,11 +27,11 @@ class ParentsController < ApplicationController
     @parent.parent_name = params[:parent_name]
     @parent.family_id = params[:family_id]
 
+
     save_status = @parent.save
 
     if save_status == true
       referer = URI(request.referer).path
-
       case referer
       when "/parents/new", "/create_parent"
         redirect_to("/parents")

@@ -1,14 +1,22 @@
 class KidsController < ApplicationController
   def index
-    @q = Kid.ransack(params[:q])
-    @kids = @q.result(:distinct => true).includes(:assignments, :family).page(params[:page]).per(10)
 
+    @family = current_parent.family
+    @kids = @family.kids
+    
     render("kids/index.html.erb")
+    
   end
 
   def show
     @assignment = Assignment.new
     @kid = Kid.find(params[:id])
+
+
+
+    @family = current_parent.family
+    @kids = @family.kids
+
 
     render("kids/show.html.erb")
   end
@@ -24,6 +32,8 @@ class KidsController < ApplicationController
 
     @kid.kid_name = params[:kid_name]
     @kid.family_id = params[:family_id]
+    
+
 
     save_status = @kid.save
 
