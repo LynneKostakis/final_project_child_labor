@@ -1,14 +1,10 @@
 <div class="page-header">
-  <h3>Family #<%= @family.id %></h3>
+  <h3>Family <%= @family.family_name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Family name</dt>
-      <dd><%= @family.family_name %></dd>
 
-    </dl>
 
     <div class="btn-group btn-group-justified">
       <a href="/families" class="btn btn-primary">
@@ -17,9 +13,7 @@
       <a href="/families/<%= @family.id %>/edit" class="btn btn-warning">
         Edit
       </a>
-      <a href="/delete_family/<%= @family.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+
     </div>
   </div>
 </div>
@@ -35,19 +29,19 @@
 
       <% @family.parents.each do |parent| %>
         <li class="list-group-item">
-          <a href="/parents/<%= parent.id %>">
+
             <%= parent.parent_name %>
-          </a>
+
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/parents/<%= parent.id %>" class="btn btn-primary">
+
+            <%if parent.id == current_parent.id%>
+              <a href="/parents/<%= parent.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/parents/<%= parent.id %>/edit" class="btn btn-warning">
+            <a href="/parents/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_parent/<%= parent.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
+            <% end %>
           </div>
         </li>
       <% end %>
@@ -57,21 +51,8 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for parent_name -->
-      <div class="form-group">
-        <label for="parent_name" class="control-label">
-          Parent name
-        </label>
-
-        <input type="text" id="parent_name" name="parent_name" placeholder="Parent name" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for family_id -->
-      <input type="hidden" name="family_id" value="<%= @family.id %>">
-
-      <button class="btn btn-block btn-success">
-        Create Parent
-      </button>
+     
+     
     </form>
       </li>
     </ul>

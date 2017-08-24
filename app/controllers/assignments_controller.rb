@@ -1,7 +1,10 @@
 class AssignmentsController < ApplicationController
   def index
-    @q = Assignment.ransack(params[:q])
-    @assignments = @q.result(:distinct => true).includes(:kids, :parents, :chores).page(params[:page]).per(10)
+    @current_assignments = current_parent.assignments
+    @assignments = @current_assignments.parent
+
+
+
 
     render("assignments/index.html.erb")
   end
@@ -14,13 +17,13 @@ class AssignmentsController < ApplicationController
 
   def new
     @assignment = Assignment.new
-
+    @kids = current_parent.family.kids
     render("assignments/new.html.erb")
   end
 
   def create
     @assignment = Assignment.new
-
+    @kids = current_parent.family.kids
     @assignment.chores_id = params[:chores_id]
     @assignment.parents_id = params[:parents_id]
     @assignment.kids_id = params[:kids_id]
@@ -47,6 +50,14 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
 
     render("assignments/edit.html.erb")
+  end
+  
+  def complete
+    @assignment = Assignment.find(params[:id])
+    @assignment.completed = true
+    @assignment.save
+    
+    redirect_back(:fallback_location => "/", :notice => "Assignment completed.")
   end
 
   def update

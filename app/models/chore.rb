@@ -11,5 +11,6 @@ class Chore < ApplicationRecord
   # Indirect associations
 
   # Validations
-
+validates :chore_name, :presence => true, :uniqueness => true
+validates :chore_value, :presence => true
 end

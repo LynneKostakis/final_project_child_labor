@@ -17,7 +17,7 @@
     <form action="/create_assignment" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
+ <input type="hidden" id= "parents_id" name="parents_id" placeholder= "Parents id" class="form-control" value="<%= current_parent.id %>">
       <!-- Label and input for chores_id -->
       <div class="form-group">
         <label for="chores_id" class="control-label">
@@ -29,11 +29,7 @@
 
       <!-- Label and input for parents_id -->
       <div class="form-group">
-        <label for="parents_id" class="control-label">
-          Parents
-        </label>
-
-        <%= select_tag(:parents_id, options_from_collection_for_select(Parent.all, :id, :parent_name, @assignment.parents_id), :class => "form-control") %>
+       
       </div>
 
       <!-- Label and input for kids_id -->
@@ -42,7 +38,7 @@
           Kids
         </label>
 
-        <%= select_tag(:kids_id, options_from_collection_for_select(Kid.all, :id, :kid_name, @assignment.kids_id), :class => "form-control") %>
+        <%= select_tag(:kids_id, options_from_collection_for_select(@kids, :id, :kid_name, @assignment.kids_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for due_date -->
@@ -54,13 +50,7 @@
         <input type="text" id="due_date" name="due_date" placeholder="Due date" class="form-control" value="<%= @assignment.due_date %>">
       </div>
 
-      <!-- Label and input for completed -->
-      <div class="checkbox">
-        <label for="completed">
-          <input type="checkbox" id="completed" name="completed" value="1" <%= "checked" if @assignment.completed %>>
-          Completed
-        </label>
-      </div>
+
 
       <button class="btn btn-success">
         Create Assignment

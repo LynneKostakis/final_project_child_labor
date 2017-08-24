@@ -29,11 +29,11 @@
 
       <!-- Label and input for family_id -->
       <div class="form-group">
-        <label for="family_id" class="control-label">
-          Family
-        </label>
 
-        <%= select_tag(:family_id, options_from_collection_for_select(Family.all, :id, :created_at, @kid.family_id), :class => "form-control") %>
+
+
+        <input type="hidden" id="family_id" name="family_id" placeholder="Family name" class="form-control" value="<%= current_parent.family_id %>">
+
       </div>
 
       <button class="btn btn-success">

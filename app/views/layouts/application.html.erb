@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>FinalProjectChildLabor</title>
+  <title>Child Labor Chore Chart</title>
 
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -35,24 +35,38 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand">FinalProjectChildLabor</a>
+        <a href="/" class="navbar-brand">Child Labor Chore Chart</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+          <li><a href="/kids">My Little Demons</a></li>
           <li><a href="/assignments">Assignments</a></li>
+          <li><a href="/families">My Family</a></li>
+          <li><a href="/parents">Parents</a></li>
           <li><a href="/chore_categories">Chore Categories</a></li>
           <li><a href="/chores">Chores</a></li>
-          <li><a href="/families">Families</a></li>
-          <li><a href="/parents">Parents</a></li>
-          <li><a href="/kids">Kids</a></li>
-          <li><a href="/rails/info">Sitemap</a></li>
-        </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/users/edit">Dummy Edit Profile Link</a></li>
-          <li><a href="/users/sign_out" data-method="delete" rel="nofollow">Dummy Sign Out Link</a></li>
+
+
+        
+         <ul class="nav navbar-nav navbar-right">
+        <% if current_parent == nil %>
+          <li><a href="/parents/sign_in">Sign In</a></li>
+          <li><a href="/parents/sign_up">Sign Up</a></li>
+        <% else %>
+          <li><a href="/parents/edit"><%= current_parent.parent_name %></a></li>
+        
+          <li><a href="/parents/sign_out" data-method="delete" rel="nofollow">
+              <i class="fa fa-fw fa-sign-out"></i>
+              Sign Out
+            </a></li>
+          
+          
+          <% end %>
+          
+         
         </ul>
       </div><!-- /.navbar-collapse -->
     </div>

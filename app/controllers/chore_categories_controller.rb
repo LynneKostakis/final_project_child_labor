@@ -10,6 +10,7 @@ class ChoreCategoriesController < ApplicationController
     @chore = Chore.new
     @chore_category = ChoreCategory.find(params[:id])
 
+
     render("chore_categories/show.html.erb")
   end
 
@@ -43,7 +44,6 @@ class ChoreCategoriesController < ApplicationController
 
   def edit
     @chore_category = ChoreCategory.find(params[:id])
-
     render("chore_categories/edit.html.erb")
   end
 

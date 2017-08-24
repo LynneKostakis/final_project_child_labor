@@ -33,7 +33,7 @@
           Chore categories
         </label>
 
-        <%= select_tag(:chore_categories_id, options_from_collection_for_select(ChoreCategory.all, :id, :chores_id, @chore.chore_categories_id), :class => "form-control") %>
+        <%= select_tag(:chore_categories_id, options_from_collection_for_select(ChoreCategory.all, :id, :category_name, @chore.chore_categories_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for chore_value -->

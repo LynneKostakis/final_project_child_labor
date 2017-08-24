@@ -18,14 +18,7 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for chores_id -->
-      <div class="form-group">
-        <label for="chores_id" class="control-label">
-          Chores
-        </label>
-
-        <input type="text" id="chores_id" name="chores_id" placeholder="Chores" class="form-control" value="<%= @chore_category.chores_id %>">
-      </div>
+     
 
       <!-- Label and input for category_name -->
       <div class="form-group">

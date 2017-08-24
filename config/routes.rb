@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  devise_for :parents, :controllers => {:registrations => "registrations"}
   ActiveAdmin.routes(self)
   root :to => "kids#index"
   # Routes for the Assignment resource:
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
 
   # UPDATE
   get "/assignments/:id/edit", :controller => "assignments", :action => "edit"
+  get "/assignments/:id/complete", :controller => "assignments", :action => "complete"
   post "/update_assignment/:id", :controller => "assignments", :action => "update"
 
   # DELETE
@@ -54,11 +57,10 @@ Rails.application.routes.draw do
 
   # Routes for the Family resource:
   # CREATE
-  get "/families/new", :controller => "families", :action => "new"
-  post "/create_family", :controller => "families", :action => "create"
+
 
   # READ
-  get "/families", :controller => "families", :action => "index"
+  get "/families", :controller => "families", :action => "show"
   get "/families/:id", :controller => "families", :action => "show"
 
   # UPDATE
@@ -103,5 +105,8 @@ Rails.application.routes.draw do
   get "/delete_kid/:id", :controller => "kids", :action => "destroy"
   #------------------------------
 
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  mount WebGit::Engine, at: "/rails/git"
 end
